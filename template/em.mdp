@@ -1,0 +1,28 @@
+; Structure minimisation
+; Parameters describing what to do, when to stop and what to save
+define                  = 
+integrator              = steep         ; Algorithm (steep = steepest descent minimization)
+emtol                   = 1000.0         ; Stop minimization when the maximum force < 1000.0 kJ/mol/nm
+emstep                  = 0.00001        ; Minimization step size
+nsteps                  = 50000         ; Maximum number of (minimization) steps to perform
+ld-seed                 = 1
+nstxout                 = 100          ; save positions every 0.2 ps; EWALD/PME/PPPM parameters
+; nstxout-compressed      = 1    ; save coordinates
+
+; number of steps for center of mass motion removal
+comm-mode               = None
+
+; Parameters describing how to find the neighbors of each atom and how to calculate the interactions
+cutoff-scheme           = Verlet        ; Buffered neighbor searching
+coulombtype             = PME           ; Treatment of long range electrostatic interactions
+rcoulomb                = 1.2           ; Short-range electrostatic cut-off
+rvdw                    = 1.2           ; Short-range Van der Waals cut-off
+pbc                     = xyz           ; Periodic Boundary Conditions in all 3 dimensions
+
+
+constraint-algorithm    = SHAKE
+
+periodic-molecules      = no
+
+freezegrps              = CB
+freezedim               = Y Y Y
