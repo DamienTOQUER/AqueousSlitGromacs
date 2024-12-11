@@ -88,4 +88,5 @@ freezedim               = Y Y Y
 ; -------------------------------------
 ;;; Electric fields
 electric-field-x        = {field} 0 0 0
+electric-field-z        = {field_z} 0 0 0
 user1-grps              = SOL
