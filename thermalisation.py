@@ -103,7 +103,7 @@ class Thermalisation():
     def _ProgPoly__launch(this, pp):
         ps = this.default_parameters
         this.__speak("Changing the parameter in the nvt.mdp file")
-        pp.change("template/nvt.mdp", pp.folder+"nvt.mdp", ["continuation", "duration_step", "number_step", "frequency_output_x", "frequency_output_v", "frequency_output_f", "frequency_output_e", "frequency_compressed_output", "temperature", "generate_velocities", "SEED", "field", "field_z"], ["yes", ps["duration_step"][0], ps["number_step"][0], ps["frequency_output_x"][0], ps["frequency_output_v"][0], ps["frequency_output_f"][0], ps["frequency_output_e"][0], ps["frequency_compressed_output"][0], ps["temperature"][0], "no", ps["SEED"][0], ps["field"][0], 0])
+        pp.change("template/nvt.mdp", pp.folder+"nvt.mdp", ["continuation", "duration_step", "number_step", "frequency_output_x", "frequency_output_v", "frequency_output_f", "frequency_output_e", "frequency_compressed_output", "temperature", "generate_velocities", "SEED", "field", "field_z"], ["yes", ps["duration_step"][0], ps["number_step"][0], ps["frequency_output_x"][0], ps["frequency_output_v"][0], ps["frequency_output_f"][0], ps["frequency_output_e"][0], ps["frequency_compressed_output"][0], ps["temperature"][0], "no", ps["SEED"][0], ps["field"][0], "0"])
         if this.umbrella["umbrella"][0]:
             with open(pp.folder+"nvt.mdp", "a") as f:
                 f.write("\npull = yes\npull_ncoords = 1\npull_ngroups = 2\npull_group1_name = IP\npull_group2_name = IM\npull_coord1_type = umbrella\npull_coord1_geometry = distance\npull_coord1_dim = Y Y N\npull_coord1_groups = 1 2\npull_coord1_k = "+str(this.umbrella["stiffness"][0])+"\npull_coord1_init = "+str(this.umbrella["pair_distance"][0])+"\npull_coord1_rate = 0\n")
