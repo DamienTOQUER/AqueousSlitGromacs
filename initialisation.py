@@ -302,14 +302,22 @@ class FromFiles(Initialisation):
     def __init__(this, gro, top, ndx, iswarning = True, isverbose = False):
         super().__init__(iswarning=iswarning, isverbose=isverbose)
         U = this.U
+        this.default_parameters = {
+        # Charge in e
+        "charge_p" : [1,U["charge"]],
+        "charge_m" : [-1,U["charge"]],
+        }
         this.gro = gro
         this.top = top
         this.ndx = ndx
     # Public function to show multiple parameters or group of parameter
     def show(this, *names):
+
         print("Not implemented")
     # Main function, used only from the progpoly class "pp"
     def _ProgPoly__launch(this, pp):
+        ps = this.default_parameters
+        pp.change("template/ff.itp", pp.folder+"ff.itp", ["charge_p", "charge_m"], [ps["charge_p"][0], ps["charge_m"][0]])
         subprocess.run("cp "+this.gro+" "+pp.folder+"em.gro", shell=True)
         subprocess.run("cp "+this.top+" "+pp.folder+"topol.top", shell=True)
         subprocess.run("cp "+this.ndx+" "+pp.folder+"index.ndx", shell=True)
