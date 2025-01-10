@@ -297,3 +297,20 @@ class Initialisation():
             this.__warn("Finally succeed")
         return True
 
+class FromFiles(Initialisation):
+    # Constructor, set if the warning should be print (default True) and if the verbose should be on (default False)
+    def __init__(this, gro, top, ndx, iswarning = True, isverbose = False):
+        super().__init__(iswarning=iswarning, isverbose=isverbose)
+        U = this.U
+        this.gro = gro
+        this.top = top
+        this.ndx = ndx
+    # Public function to show multiple parameters or group of parameter
+    def show(this, *names):
+        print("Not implemented")
+    # Main function, used only from the progpoly class "pp"
+    def _ProgPoly__launch(this, pp):
+        subprocess.run("cp "+this.gro+" "+pp.folder+"em.gro", shell=True)
+        subprocess.run("cp "+this.top+" "+pp.folder+"topol.top", shell=True)
+        subprocess.run("cp "+this.ndx+" "+pp.folder+"index.ndx", shell=True)
+        return True
