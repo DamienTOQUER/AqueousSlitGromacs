@@ -108,7 +108,7 @@ class Thermalisation():
             with open(pp.folder+"nvt.mdp", "a") as f:
                 f.write("\npull = yes\npull_ncoords = 1\npull_ngroups = 2\npull_group1_name = IP\npull_group2_name = IM\npull_coord1_type = umbrella\npull_coord1_geometry = distance\npull_coord1_dim = Y Y N\npull_coord1_groups = 1 2\npull_coord1_k = "+str(this.umbrella["stiffness"][0])+"\npull_coord1_init = "+str(this.umbrella["pair_distance"][0])+"\npull_coord1_rate = 0\n")
         pp.call("gmx grompp -f "+pp.folder+"nvt.mdp -c "+pp.folder+"em.gro -r "+pp.folder+"em.gro -p "+pp.folder+"topol.top -n "+pp.folder+"index.ndx -o "+pp.folder+"nvt.tpr")
-        if ps["number_step"]>0:
+        if int(ps["number_step"])>0:
             if not pp.call("gmx mdrun -v -deffnm "+pp.folder+"nvt --nt " + str(pp.ncore) + " -pin on -pinoffset " + str(pp.offset) + " -pinstride 2"):
                 return False
         else:
