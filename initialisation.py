@@ -306,6 +306,9 @@ class FromFiles(Initialisation):
         # Charge in e
         "charge_p" : [1,U["charge"]],
         "charge_m" : [-1,U["charge"]],
+        # Number
+        "number_p" : [100,U["none"]],
+        "number_m" : [100,U["none"]],
         }
         this.gro = gro
         this.top = top
